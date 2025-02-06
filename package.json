@@ -11,7 +11,7 @@
   "scripts": {
     "start": "concurrently \"npm run start --prefix server\" \"npm run start --prefix client\"",
     "cy:open": "wait-on http://localhost:3000 && npx cypress open --browser chrome --config-file local.config.ts",
-    "test-local:smoke": "wait-on http://localhost:3000 && cypress run --browser chrome --config-file local.config.ts --env grepTags=@smoke --spec 'cypress/tests/e2e/**/*.{js,ts,tsx}'",
+    "test-local:smoke": "wait-on http://localhost:3000 && cypress run --browser chrome --config-file local.config.ts --env grepTags=@smoke",
     "test-local:e2e": "wait-on http://localhost:3000 && cypress run --browser chrome --config-file local.config.ts --env grepTags=@regression --spec 'cypress/tests/e2e/**/*.{js,ts,tsx}'",
     "test-local:api": "wait-on http://localhost:3000 && cypress run --browser chrome --config-file local.config.ts --env grepTags=@regression --spec 'cypress/tests/api/**/*.{js,ts,tsx}'",
     "test-local:firefox": "wait-on http://localhost:3000 && cypress run --browser firefox --config-file local.config.ts --env grepTags=@smoke",
