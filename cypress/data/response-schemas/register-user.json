@@ -1,0 +1,70 @@
+{
+    "type": "object",
+    "properties": {
+        "firstName": {
+            "type": "string"
+        },
+        "lastName": {
+            "type": "string"
+        },
+        "email": {
+            "type": "string"
+        },
+        "password": {
+            "type": "string"
+        },
+        "picturePath": {
+            "type": "string"
+        },
+        "friends": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "location": {
+            "type": "string"
+        },
+        "occupation": {
+            "type": "string"
+        },
+        "viewedProfile": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "impressions": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "_id": {
+            "type": "string"
+        },
+        "createdAt": {
+            "type": "string"
+        },
+        "updatedAt": {
+            "type": "string"
+        },
+        "__v": {
+            "type": "integer",
+            "minimum": 0
+        }
+    },
+    "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "password",
+        "picturePath",
+        "friends",
+        "location",
+        "occupation",
+        "viewedProfile",
+        "impressions",
+        "_id",
+        "createdAt",
+        "updatedAt",
+        "__v"
+    ],
+    "additionalProperties": false
+}

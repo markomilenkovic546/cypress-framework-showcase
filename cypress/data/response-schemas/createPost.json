@@ -1,0 +1,74 @@
+{
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "_id": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{24}$"
+            },
+            "userId": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{24}$"
+            },
+            "firstName": {
+                "type": "string"
+            },
+            "lastName": {
+                "type": "string"
+            },
+            "location": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "picturePath": {
+                "type": "string"
+            },
+            "userPicturePath": {
+                "type": "string"
+            },
+            "likes": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "boolean"
+                }
+            },
+            "comments": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "__v": {
+                "type": "integer",
+                "minimum": 0
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+            }
+        },
+        "required": [
+            "_id",
+            "userId",
+            "firstName",
+            "lastName",
+            "location",
+            "description",
+            "picturePath",
+            "userPicturePath",
+            "likes",
+            "comments",
+            "__v",
+            "createdAt",
+            "updatedAt"
+        ],
+        "additionalProperties": false
+    }
+}
