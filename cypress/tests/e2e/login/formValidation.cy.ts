@@ -21,7 +21,7 @@ describe('User login flow', () => {
         it(
             'User should not be able to login with incorrect password',
             // @ts-ignore
-            { tags: ['@e2e', '@sanity', '@negative'] },
+            { tags: ['@e2e', '@regression', '@negative'] },
             () => {
                 cy.section('Register user');
                 apiHelper.registerUser(user);
@@ -49,7 +49,7 @@ describe('User login flow', () => {
         it(
             'User should not be able to log in when password input is missing',
             // @ts-ignore
-            { tags: ['@e2e', '@sanity', '@negative'] },
+            { tags: ['@e2e', '@regression', '@negative'] },
             () => {
                 cy.section('Register user');
                 apiHelper.registerUser(user);
@@ -68,7 +68,7 @@ describe('User login flow', () => {
         it(
             'User should not be able to log in when email input is missing',
             // @ts-ignore
-            { tags: ['@e2e', '@sanity', '@negative'] },
+            { tags: ['@e2e', '@regression', '@negative'] },
             () => {
                 cy.section('Register user');
                 apiHelper.registerUser(user);
@@ -87,7 +87,7 @@ describe('User login flow', () => {
         it(
             'User should not be able to log in with unregistered email',
             // @ts-ignore
-            { tags: ['@e2e', '@sanity', '@negative'] },
+            { tags: ['@e2e', '@regression', '@negative'] },
             () => {
                 cy.section('Register user');
                 apiHelper.registerUser(user);
@@ -125,7 +125,7 @@ describe('User login flow', () => {
         it(
             'User should not be able to log in with incorrect password',
             // @ts-ignore
-            { tags: ['@e2e', '@sanity', '@negative'] },
+            { tags: ['@e2e', '@regression', '@negative'] },
             () => {
                 cy.section('Register user');
                 apiHelper.registerUser(user);
@@ -163,7 +163,7 @@ describe('User login flow', () => {
         it(
             'User should not be able to log in with incorrect password',
             // @ts-ignore
-            { tags: ['@e2e', '@sanity', '@negative'] },
+            { tags: ['@e2e', '@regression', '@negative'] },
             () => {
                 cy.section('Register user');
                 apiHelper.registerUser(user);

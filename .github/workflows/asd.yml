@@ -1,0 +1,124 @@
+name: Regression testing - dev
+
+on:
+  pull_request:
+    branches:
+      - main
+      
+  workflow_run:
+    workflows: ["dev pipeline"] 
+    types:
+      - completed
+    status:
+      success: true
+
+  workflow_dispatch:     
+
+
+jobs:
+  regression_testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Install dependencies
+        run: |
+          npm install -g pnpm
+          pnpm install
+        working-directory: ./test-automation
+
+      # Smoke Testing
+      - name: Run smoke tests
+        id: smoke-tests
+        working-directory: ./test-automation
+        run: pnpm run smoke-testing-dev
+        continue-on-error: true
+
+      - name: Upload smoke test reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-test-reports
+          path: ./test-automation/cypress/reports
+
+      - name: Upload smoke test screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-test-screenshots
+          path: ./test-automation/cypress/screenshots
+
+      - name: Upload smoke test videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-test-videos
+          path: ./test-automation/cypress/videos
+
+      - name: Fail workflow if smoke tests failed
+        if: steps.smoke-tests.outcome == 'failure'
+        run: |
+          echo "❌ Smoke tests failed. Stopping workflow."
+          exit 1
+
+      # API Regression Testing
+      - name: Run API tests
+        id: api-tests
+        working-directory: ./test-automation
+        run: pnpm run api-tests-dev
+        continue-on-error: true
+
+      - name: Upload API test reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-reports
+          path: ./test-automation/cypress/reports
+
+      - name: Upload API test screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-screenshots
+          path: ./test-automation/cypress/screenshots
+
+      - name: Upload API test videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-videos
+          path: ./test-automation/cypress/videos
+
+      # E2E Regression Testing
+      - name: Run E2E tests
+        id: e2e-tests
+        working-directory: ./test-automation
+        run: pnpm run e2e-tests-dev:chrome
+        continue-on-error: true
+
+      - name: Upload E2E test reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-reports
+          path: ./test-automation/cypress/reports
+
+      - name: Upload E2E test screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-screenshots
+          path: ./test-automation/cypress/screenshots
+
+      - name: Upload E2E test videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-videos
+          path: ./test-automation/cypress/videos
+
+      - name: Fail workflow if API or E2E tests failed
+        if: steps.api-tests.outcome == 'failure' || steps.e2e-tests.outcome == 'failure'
+        run: |
+          echo "❌ Regression tests failed. Stopping workflow."
+          exit 1
