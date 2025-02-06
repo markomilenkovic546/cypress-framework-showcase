@@ -39,17 +39,16 @@ The framework is designed following the **Page Object Model (POM)**, a design pa
 - **GitHub Actions**: The project utilizes GitHub Actions for CI/CD. The workflow is configured to run the app locally on the CI/CD server, execute tests over it, and upload test artifacts. 
 
 ## Test Run Reports 📊
-
-     After running the tests, the `cypress-mochawesome-reporter` generates the `reports` folder with detailed HTML reports. These reports provide insights into test results, including passed, failed, and skipped tests, along with detailed logs and screenshots.
-### Multi-Environment Support
-
-- The tests are configured to run on multiple environments by using environment-specific `.env` files (e.g., `.env.staging`) and the corresponding Cypress configuration files (e.g., `staging.config.ts`). This allows the tests to be executed on different environments like QA, staging, etc.
+After running the tests, the `cypress-mochawesome-reporter` generates the `reports` folder with detailed HTML reports. These reports provide insights into test results, including passed, failed, and skipped tests, along with detailed logs and screenshots.
+     
+## Multi-Environment Support
+ The tests are configured to run on multiple environments by using environment-specific `.env` files (e.g., `.env.staging`) and the corresponding Cypress configuration files (e.g., `staging.config.ts`). This allows the tests to be executed on different environments like QA, staging, etc.
 
 ## Running Locally 🖥️
 
 To run the tests locally, follow these steps:
 ```bash
-# 1. Clone the project locally git clone <repo url>
+1. Clone the project locally `git clone <repo url>`
 2. Run `npm install` or `yarn` to install the necessary dependencies.
 3. Set up MongoDB
     Sign in to MongoDB Atlas and create a new cluster and database.
@@ -64,7 +63,7 @@ To run the tests locally, follow these steps:
    API_BASE_URL=http://localhost:3001
    SEED_API_KEY=<your seed API key>
 6. Run the application 
-   npm start or yarn start
+   `npm start` or `yarn start`
 7. Run tests
      Run tests in UI mode:
  `npm run cy:open` or `yarn cy:open`
