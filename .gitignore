@@ -1,0 +1,7 @@
+node_modules
+cypress/reports
+cypress/screenshots
+cypress/videos
+cypress/tests/e2e/local.ts
+.env.local
+logs

@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "esModuleInterop": true,
+      "lib": ["es5", "dom"],
+      "types": ["cypress", "node", "cypress-mochawesome-reporter"],
+      "resolveJsonModule": true,
+      "baseUrl": "./",
+      "paths": {
+        
+      }
+    },
+    "include": ["**/*.ts", "cypress.config.js", "@cypress/grep", "cypress-plugin-steps"]
+  }
