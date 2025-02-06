@@ -1,5 +1,5 @@
 import { CreatedUser, User } from './types';
-import DataFactory from './dataFactory';
+import DataFactory from './data-factory';
 const dataFactory = new DataFactory();
 
 export default class ApiHelper {

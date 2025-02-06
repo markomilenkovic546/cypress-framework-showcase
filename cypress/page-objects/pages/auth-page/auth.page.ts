@@ -1,6 +1,6 @@
-import BasePage from '../basePage';
-import LoginForm from './loginForm';
-import RegistrationForm from './registrationForm';
+import BasePage from '../base.page';
+import LoginForm from './login-form';
+import RegistrationForm from './registration-form';
 
 export default class AuthPage extends BasePage {
     readonly loginForm: LoginForm;

@@ -1,7 +1,7 @@
-import AuthPage from '../../../pageObjects/pages/authPage/authPage';
-import HomePage from '../../../pageObjects/pages/homePage/homePage';
-import DataFactory from '../../../data/dataFactory';
-import ApiHelper from 'cypress/data/apiHelper';
+import AuthPage from '../../../page-objects/pages/auth-page/auth.page';
+import HomePage from '../../../page-objects/pages/homepage/home.page';
+import DataFactory from '../../../data/data-factory';
+import ApiHelper from 'cypress/data/api-helper';
 const apiHelper = new ApiHelper();
 const dataFactory = new DataFactory();
 const authPage = new AuthPage();

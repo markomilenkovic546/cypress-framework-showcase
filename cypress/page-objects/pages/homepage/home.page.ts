@@ -1,9 +1,9 @@
-import ProfileDetails from './profileGeneralDetails';
-import CreatePostWidget from './createPostWidget';
-import FeedPostWidget from './feedPostWidget';
-import FriendList from './friendList';
-import NavBar from 'cypress/pageObjects/globalComponents/navBar';
-import BasePage from '../basePage';
+import ProfileDetails from './profile-details';
+import CreatePostWidget from './create-post-widget';
+import FeedPostWidget from './feed-post-widget';
+import FriendList from './friend-list';
+import NavBar from 'cypress/page-objects/global-components/nav-bar';
+import BasePage from '../base.page';
 
 export default class HomePage extends BasePage {
     readonly profileDetails: ProfileDetails;

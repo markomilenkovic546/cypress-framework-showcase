@@ -1,6 +1,6 @@
 import { defineConfig } from 'cypress';
-import cleanDb from 'cypress/data/seeding/cleanDb';
-import seedDb from 'cypress/data/seeding/seedDb';
+import cleanDb from 'cypress/data/seeding/clean-db';
+import seedDb from 'cypress/data/seeding/seed-db';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
@@ -21,17 +21,15 @@ export default defineConfig({
         specPattern: 'cypress/tests/**/*.cy.{js,jsx,ts,tsx}',
         reporter: 'cypress-mochawesome-reporter',
         testIsolation: true,
-        "video": true,                   
-        "videoCompression": 25,              
-        "videosFolder": "cypress/videos",
-        "screenshotOnRunFailure": true, 
-        "screenshotsFolder": "cypress/screenshots",
+        video: true,
+        videoCompression: 25,
+        videosFolder: 'cypress/videos',
+        screenshotOnRunFailure: true,
+        screenshotsFolder: 'cypress/screenshots',
         setupNodeEvents(on, config) {
-            resetDbState()
+            resetDbState();
             // Implement Node event listeners
-            on('task', {
-                
-            });
+            on('task', {});
 
             // Attach plugins
             require('cypress-mochawesome-reporter/plugin')(on); // Mochawesome reporter

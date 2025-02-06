@@ -1,9 +1,8 @@
-import AuthPage from '../../../pageObjects/pages/authPage/authPage';
-import HomePage from '../../../pageObjects/pages/homePage/homePage';
-
+import AuthPage from '../../../page-objects/pages/auth-page/auth.page';
+import HomePage from '../../../page-objects/pages/homepage/home.page';
 const authPage = new AuthPage();
 const homePage = new HomePage();
-import DataFactory from '../../../data/dataFactory';
+import DataFactory from '../../../data/data-factory';
 import { User } from '../../../data/types';
 const dataFactory = new DataFactory();
 
