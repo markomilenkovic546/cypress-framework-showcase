@@ -1,0 +1,133 @@
+name: Regression Testing
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Create .env.local in server dir
+        run: |                 
+          echo "MONGO_URI=${{ secrets.LOCAL_MONGO_URI }}" > server/.env.local
+          echo "JWT_SECRET=${{ secrets.LOCAL_JWT_SECRET }}" >> server/.env.local
+          echo "PORT=${{ secrets.LOCAL_PORT }}" >> server/.env.local
+          echo "SEED_API_KEY=${{ secrets.LOCAL_SEED_API_KEY }}" >> server/.env.local
+          echo ".env.local file created successfully in server directory."
+
+      - name: Create .env.local in root dir
+        run: |                 
+          echo "BASE_URL=${{ secrets.LOCAL_BASE_URL }}" > .env.local
+          echo "API_BASE_URL=${{ secrets.LOCAL_API_BASE_URL }}" >> .env.local
+          echo "SEED_API_KEY=${{ secrets.LOCAL_SEED_API_KEY }}" >> .env.local
+          echo ".env.local file created successfully in root directory."
+
+      - name: Run application
+        run: yarn start &
+
+      # Smoke testing
+      - name: Run smoke tests
+        id: smoke-tests
+        run: |
+          yarn test-local:smoke
+        continue-on-error: true  
+
+      - name: Upload smoke test run report
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-test-reports
+          path: ./cypress/reports
+
+      - name: Upload smoke test run screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-test-screenshots
+          path: ./cypress/screenshots
+      
+      - name: Upload smoke test run videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-test-videos
+          path: ./cypress/videos       
+
+      - name: Fail workflow if smoke tests failed
+        if: steps.smoke-tests.outcome == 'failure'
+        run: |
+          echo "Smoke tests failed. Stopping workflow after uploading artifacts."
+          exit 1    
+
+      # API regression testing
+      - name: Run API regression tests
+        id: api-regression-tests
+        run: |
+          yarn test-local:api
+        continue-on-error: true 
+        
+      - name: Upload API regression test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-regression-test-reports
+          path: ./cypress/reports
+      
+      - name: Upload API regression test run screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-regression-test-screenshots
+          path: ./cypress/screenshots
+
+      - name: Upload API regression test run videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-regression-test-videos
+          path: ./cypress/videos
+
+      # e2e regression testing
+      - name: Run e2e regression tests
+        id: e2e-regression-tests
+        run: |
+          yarn test-local:e2e
+        continue-on-error: true   
+    
+      - name: Upload e2e regression test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-regression-test-reports
+          path: ./cypress/reports  
+      
+      - name: Upload e2e regression test run screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-regression-test-screenshots
+          path: ./cypress/screenshots
+
+      - name: Upload e2e regression test run videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-regression-test-videos
+          path: ./cypress/videos
+
+      - name: Fail workflow if regression tests failed
+        if: steps.api-regression-tests.outcome == 'failure' || steps.e2e-regression-tests.outcome == 'failure'
+        run: |
+          echo "Regression tests failed. Failing workflow after uploading artifacts."
+          exit 1  
