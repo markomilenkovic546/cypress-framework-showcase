@@ -20,7 +20,7 @@ The framework is designed following the **Page Object Model (POM)**, a design pa
 
 ### Test Data Generation
 
-- **Faker.js**: The `DataFactory` class is used to generate dynamic test data, such as user information, product details, etc., ensuring that the tests can run with varied data for each execution.
+- **Faker.js**: The `DataFactory` class is used to generate dynamic test data, such as user information, etc., ensuring that the tests can run with varied data for each execution.
 
 ### Database Reset
 
