@@ -19,8 +19,8 @@ export default class AuthPage extends BasePage {
     // User login
     login(email: string, password: string) {
         this.open();
-        this.loginForm.emailField.type(email);
-        this.loginForm.passwordField.type(password);
-        this.loginForm.loginBtn.click();
+        this.loginForm.enterEmail(email);
+        this.loginForm.enterPassword(password);
+        this.loginForm.submit();
     }
 }
