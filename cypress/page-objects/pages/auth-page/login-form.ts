@@ -30,5 +30,17 @@ export default class LoginForm {
             .contains('User not found. Please register.');
     }
 
+    // Actions
 
+    enterEmail(email: string): Locator {
+        return this.emailField.type(email);
+    }
+
+    enterPassword(password: string): Locator {
+        return this.passwordField.type(password);
+    }
+
+    submit(): Locator {
+        return this.loginBtn.click();
+    }
 }
