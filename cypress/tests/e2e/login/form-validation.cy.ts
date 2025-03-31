@@ -81,15 +81,13 @@ describe('User login flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@regression', '@negative'] },
             () => {
-                // Register User via API
-                apiHelper.registerUser(user);
 
                 authPage.loginForm
                     .enterEmail('111' + user.email)
                     .should('have.value', '111' + user.email);
 
                 authPage.loginForm
-                    .enterEmail(user.password)
+                    .enterPassword(user.password)
                     .should('have.value', user.password);
 
                 authPage.loginForm.submit();
