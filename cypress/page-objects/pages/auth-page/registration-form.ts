@@ -118,25 +118,13 @@ export default class RegistrationForm {
     }
 
     // Fill out the registration form
-    fillForm(
-        user: User,
-        { hasImage }: { hasImage: boolean }
-    ): void {
-        user.firstName && this.firstNameField.type(user.firstName);
-
-        user.lastName && this.lastNameField.type(user.lastName);
-
-        user.location && this.locationField.type(user.location);
-
-        user.occupation && this.occupationField.type(user.occupation);
-
-        hasImage &&
-            this.imageInput.selectFile('cypress/fixtures/profileImage.jpg', {
-                action: 'drag-drop'
-            });
-
-        user.email && this.emailField.type(user.email);
-
-        user.password && this.passwordField.type(user.password);
+    fillForm(user: User, { hasImage }: { hasImage: boolean }): void {
+        user.firstName && this.enterFirstName(user.firstName);
+        user.lastName && this.enterLastName(user.lastName);
+        user.location && this.enterLocation(user.location);
+        user.occupation && this.enterOccupation(user.occupation);
+        hasImage && this.uploadPhoto();
+        user.email && this.enterEmail(user.email);
+        user.password && this.enterPassword(user.password);
     }
 }
