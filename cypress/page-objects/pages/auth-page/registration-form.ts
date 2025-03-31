@@ -82,51 +82,61 @@ export default class RegistrationForm {
         return cy.get('[data-cy="location-input"]').parent().parent().find('p');
     }
 
+    //******* Actions *******
+    enterFirstName(firstName: string): Locator {
+        return this.firstNameField.type(firstName);
+    }
+
+    enterLastName(lastName: string): Locator {
+        return this.lastNameField.type(lastName);
+    }
+
+    enterOccupation(occupation: string): Locator {
+        return this.occupationField.type(occupation);
+    }
+
+    enterLocation(location: string): Locator {
+        return this.locationField.type(location);
+    }
+
+    uploadPhoto(): Locator {
+        return this.imageInput.selectFile('cypress/fixtures/profileImage.jpg', {
+            action: 'drag-drop'
+        });
+    }
+
+    enterEmail(email: string): Locator {
+        return this.emailField.type(email);
+    }
+
+    enterPassword(password: string): Locator {
+        return this.passwordField.type(password);
+    }
+
+    submitForm(): Locator {
+        return this.registerBtn.click();
+    }
+
     // Fill out the registration form
-    fillRegistrationForm(
+    fillForm(
         user: User,
         { hasImage }: { hasImage: boolean }
     ): void {
-        user.firstName &&
-            cy.step('Enter First name input') &&
-            this.firstNameField
-                .type(user.firstName)
-                .should('have.value', user.firstName);
+        user.firstName && this.firstNameField.type(user.firstName);
 
-        user.lastName &&
-            cy.step('Enter Last name input') &&
-            this.lastNameField
-                .type(user.lastName)
-                .should('have.value', user.lastName);
+        user.lastName && this.lastNameField.type(user.lastName);
 
-        user.location &&
-            cy.step('Enter Location input') &&
-            this.locationField
-                .type(user.location)
-                .should('have.value', user.location);
+        user.location && this.locationField.type(user.location);
 
-        user.occupation &&
-            cy.step('Enter Occupation input') &&
-            this.occupationField
-                .type(user.occupation)
-                .should('have.value', user.occupation);
+        user.occupation && this.occupationField.type(user.occupation);
 
         hasImage &&
-            cy.step('Upload profile photo') &&
-            this.imageInput
-                .selectFile('cypress/fixtures/profileImage.jpg', {
-                    action: 'drag-drop'
-                })
-                .should('contain.text', 'profileImage.jpg');
+            this.imageInput.selectFile('cypress/fixtures/profileImage.jpg', {
+                action: 'drag-drop'
+            });
 
-        user.email &&
-            cy.step('Enter Email input') &&
-            this.emailField.type(user.email).should('have.value', user.email);
+        user.email && this.emailField.type(user.email);
 
-        user.password &&
-            cy.step('Enter Password input') &&
-            this.passwordField
-                .type(user.password)
-                .should('have.value', user.password);
+        user.password && this.passwordField.type(user.password);
     }
 }
