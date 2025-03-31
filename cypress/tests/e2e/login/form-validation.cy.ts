@@ -23,22 +23,18 @@ describe('User login flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@regression', '@negative'] },
             () => {
-                cy.section('Register user');
+                // Register User via API
                 apiHelper.registerUser(user);
 
-                cy.section('Fill the Login form and submit');
-                cy.step('Enter Email input');
-                authPage.loginForm.emailField
-                    .type(user.email)
+                authPage.loginForm
+                    .enterEmail(user.email)
                     .should('have.value', user.email);
 
-                cy.step('Enter incorrect password input');
-                authPage.loginForm.passwordField
-                    .type(user.password + 'a')
+                authPage.loginForm
+                    .enterPassword(user.password + 'a')
                     .should('have.value', user.password + 'a');
 
-                cy.step('Submit Login form');
-                authPage.loginForm.loginBtn.click();
+                authPage.loginForm.submit();
 
                 // Verify that user is not logged in
                 cy.url().should('not.include', '/home');
@@ -51,13 +47,11 @@ describe('User login flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@regression', '@negative'] },
             () => {
-                cy.section('Register user');
+                // Register User via API
                 apiHelper.registerUser(user);
 
-                cy.section('Fill the Login form except the Password field');
-                cy.step('Enter Email input');
-                authPage.loginForm.emailField
-                    .type(user.email)
+                authPage.loginForm
+                    .enterEmail(user.email)
                     .should('have.value', user.email);
 
                 // Verify that submit button is disabled
@@ -70,13 +64,11 @@ describe('User login flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@regression', '@negative'] },
             () => {
-                cy.section('Register user');
+                // Register User via API
                 apiHelper.registerUser(user);
 
-                cy.section('Fill the Login form except the Email field');
-                cy.step('Enter Password input');
-                authPage.loginForm.passwordField
-                    .type(user.password)
+                authPage.loginForm
+                    .enterPassword(user.password)
                     .should('have.value', user.password);
 
                 // Verify that submit button is disabled
@@ -89,22 +81,18 @@ describe('User login flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@regression', '@negative'] },
             () => {
-                cy.section('Register user');
+                // Register User via API
                 apiHelper.registerUser(user);
 
-                cy.section('Fill the Login form and submit');
-                cy.step('Enter Email input');
-                authPage.loginForm.emailField
-                    .type('111' + user.email)
+                authPage.loginForm
+                    .enterEmail('111' + user.email)
                     .should('have.value', '111' + user.email);
 
-                cy.step('Enter Password input');
-                authPage.loginForm.passwordField
-                    .type(user.password)
+                authPage.loginForm
+                    .enterEmail(user.password)
                     .should('have.value', user.password);
 
-                cy.step('Submit Login form');
-                authPage.loginForm.loginBtn.click();
+                authPage.loginForm.submit();
 
                 // Verify that user is not logged in
                 cy.url().should('not.include', '/home');
@@ -127,22 +115,18 @@ describe('User login flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@regression', '@negative'] },
             () => {
-                cy.section('Register user');
+                // Register User via API
                 apiHelper.registerUser(user);
 
-                cy.section('Fill the Login form and submit');
-                cy.step('Enter Email input');
-                authPage.loginForm.emailField
-                    .type(user.email)
+                authPage.loginForm
+                    .enterEmail(user.email)
                     .should('have.value', user.email);
 
-                cy.step('Enter incorrect password input');
-                authPage.loginForm.passwordField
-                    .type(user.password + 'a')
+                authPage.loginForm
+                    .enterPassword(user.password + 'a')
                     .should('have.value', user.password + 'a');
 
-                cy.step('Submit Login form');
-                authPage.loginForm.loginBtn.click();
+                authPage.loginForm.submit();
 
                 // Verify that user is not logged in
                 cy.url().should('not.include', '/home');
@@ -165,21 +149,17 @@ describe('User login flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@regression', '@negative'] },
             () => {
-                cy.section('Register user');
+                // Register User via API
                 apiHelper.registerUser(user);
 
-                cy.section('Fill the Login form and submit');
-                cy.step('Enter Email input');
-                authPage.loginForm.emailField
-                    .type(user.email)
+                authPage.loginForm
+                    .enterEmail(user.email)
                     .should('have.value', user.email);
 
-                cy.step('Enter incorrect password input');
-                authPage.loginForm.passwordField
-                    .type(user.password + 'a')
+                authPage.loginForm
+                    .enterPassword(user.password + 'a')
                     .should('have.value', user.password + 'a');
 
-                cy.step('Submit Login form');
                 authPage.loginForm.loginBtn.click();
 
                 // Verify that user is not logged in

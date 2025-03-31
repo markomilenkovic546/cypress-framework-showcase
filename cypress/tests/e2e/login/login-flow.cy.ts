@@ -23,22 +23,18 @@ describe('User login flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@smoke', '@positive'] },
             () => {
-                // Register user
+                // Register User via API
                 apiHelper.registerUser(user);
 
-                cy.section('Fill the Login form and submit');
-                cy.step('Enter Email input');
-                authPage.loginForm.emailField
-                    .type(user.email)
+                authPage.loginForm
+                    .enterEmail(user.email)
                     .should('have.value', user.email);
 
-                cy.step('Enter password input');
-                authPage.loginForm.passwordField
-                    .type(user.password)
+                authPage.loginForm
+                    .enterPassword(user.password)
                     .should('have.value', user.password);
 
-                cy.step('Submit Login form');
-                authPage.loginForm.loginBtn.click();
+                authPage.loginForm.submit();
 
                 // Verify that user is logged in and redirected to homepage
                 cy.url().should('include', '/home');
@@ -64,22 +60,18 @@ describe('User login flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@smoke', '@positive'] },
             () => {
-                cy.section('Register user');
+                // Register User via API
                 apiHelper.registerUser(user);
 
-                cy.section('Fill the Login form and submit');
-                cy.step('Enter Email input');
-                authPage.loginForm.emailField
-                    .type(user.email)
+                authPage.loginForm
+                    .enterEmail(user.email)
                     .should('have.value', user.email);
 
-                cy.step('Enter password input');
-                authPage.loginForm.passwordField
-                    .type(user.password)
+                authPage.loginForm
+                    .enterPassword(user.password)
                     .should('have.value', user.password);
 
-                cy.step('Submit Login form');
-                authPage.loginForm.loginBtn.click();
+                authPage.loginForm.submit();
 
                 // Verify that user is logged in and redirected to homepage
                 cy.url().should('include', '/home');
@@ -105,22 +97,18 @@ describe('User login flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@smoke', '@positive'] },
             () => {
-                // Register user
+                // Register User via API
                 apiHelper.registerUser(user);
 
-                cy.section('Fill the Login form and submit');
-                cy.step('Enter Email input');
-                authPage.loginForm.emailField
-                    .type(user.email)
+                authPage.loginForm
+                    .enterEmail(user.email)
                     .should('have.value', user.email);
 
-                cy.step('Enter password input');
-                authPage.loginForm.passwordField
-                    .type(user.password)
+                authPage.loginForm
+                    .enterPassword(user.password)
                     .should('have.value', user.password);
 
-                cy.step('Submit Login form');
-                authPage.loginForm.loginBtn.click();
+                authPage.loginForm.submit();
 
                 // Verify that user is logged in and redirected to homepage
                 cy.url().should('include', '/home');

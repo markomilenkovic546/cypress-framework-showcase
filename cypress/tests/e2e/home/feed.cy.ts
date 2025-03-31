@@ -35,7 +35,6 @@ describe('Posts List', () => {
             { tags: ['@e2e', '@regression', '@positive'] },
             () => {
                 posts.forEach((post) => {
-                    cy.section('Verify Full Name');
                     homePage.feedPostWidget
                         .userFullName(post._id)
                         .invoke('text')
@@ -45,7 +44,6 @@ describe('Posts List', () => {
                             );
                         });
 
-                    cy.section('Verify Location info');
                     homePage.feedPostWidget
                         .userLocation(post._id)
                         .invoke('text')
@@ -53,13 +51,11 @@ describe('Posts List', () => {
                             expect(location).to.equal(post.location);
                         });
 
-                    cy.section('Verify Profile image');
                     homePage.feedPostWidget
                         .userImage(post._id)
                         .invoke('attr', 'src')
                         .should('include', post.userPicturePath);
 
-                    cy.section('Verify Post text');
                     homePage.feedPostWidget
                         .postContent(post._id)
                         .invoke('text')
@@ -67,7 +63,6 @@ describe('Posts List', () => {
                             expect(postText).to.equal(post.description);
                         });
 
-                    cy.section('Verify Likes count info');
                     homePage.feedPostWidget
                         .likeCount(post._id)
                         .invoke('text')
@@ -77,7 +72,6 @@ describe('Posts List', () => {
                             );
                         });
 
-                    cy.section('Verify Comments count info');
                     homePage.feedPostWidget
                         .commentCount(post._id)
                         .invoke('text')
@@ -87,7 +81,6 @@ describe('Posts List', () => {
                             );
                         });
 
-                    cy.section('Verify Comments text');
                     post.comments.forEach((comment, index) => {
                         homePage.feedPostWidget.commentButton(post._id).click();
                         homePage.feedPostWidget
@@ -107,7 +100,6 @@ describe('Posts List', () => {
             // @ts-ignore
             { tags: ['@e2e', '@smoke', '@positive'] },
             () => {
-                cy.step('Add a user to friend list');
                 homePage.feedPostWidget
                     .addToFriendsButton(posts[0]._id)
                     .click();
