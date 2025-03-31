@@ -25,15 +25,39 @@ describe('User registration flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@smoke', '@positive', '@registration'] },
             () => {
-                cy.section('Fill the Registration form');
-                authPage.registrationForm.fillRegistrationForm(user, {
-                    hasImage: true
-                });
-                cy.step('Submit the Registration form');
-                authPage.registrationForm.registerBtn.click();
+                // Fill and submit the Registration form
+                authPage.registrationForm
+                    .enterFirstName(user.firstName)
+                    .should('have.value', user.firstName);
 
-                cy.section('Login with registered user');
+                authPage.registrationForm
+                    .enterLastName(user.lastName)
+                    .should('have.value', user.lastName);
+
+                authPage.registrationForm
+                    .enterOccupation(user.occupation)
+                    .should('have.value', user.occupation);
+
+                authPage.registrationForm
+                    .enterLocation(user.location)
+                    .should('have.value', user.location);
+
+                authPage.registrationForm
+                    .uploadPhoto()
+                    .should('contain.text', 'profileImage.jpg');
+
+                authPage.registrationForm
+                    .enterEmail(user.email)
+                    .should('have.value', user.email);
+
+                authPage.registrationForm
+                    .enterPassword(user.password)
+                    .should('have.value', user.password);
+                
+                authPage.registrationForm.submitForm();
+
                 cy.wait(1000);
+                // Login with registered user
                 authPage.login(user.email, user.password);
 
                 // Verify that correct user full name is displayed
@@ -70,15 +94,39 @@ describe('User registration flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@smoke', '@positive', '@registration'] },
             () => {
-                cy.section('Fill the Registration form');
-                authPage.registrationForm.fillRegistrationForm(user, {
-                    hasImage: true
-                });
-                cy.step('Submit the Registration form');
-                authPage.registrationForm.registerBtn.click();
+                // Fill and submit the Registration form
+                authPage.registrationForm
+                    .enterFirstName(user.firstName)
+                    .should('have.value', user.firstName);
 
-                cy.section('Login with registered user');
+                authPage.registrationForm
+                    .enterLastName(user.lastName)
+                    .should('have.value', user.lastName);
+
+                authPage.registrationForm
+                    .enterOccupation(user.occupation)
+                    .should('have.value', user.occupation);
+
+                authPage.registrationForm
+                    .enterLocation(user.location)
+                    .should('have.value', user.location);
+
+                authPage.registrationForm
+                    .uploadPhoto()
+                    .should('contain.text', 'profileImage.jpg');
+
+                authPage.registrationForm
+                    .enterEmail(user.email)
+                    .should('have.value', user.email);
+
+                authPage.registrationForm
+                    .enterPassword(user.password)
+                    .should('have.value', user.password);
+                // Submit Registration form
+                authPage.registrationForm.submitForm();
+
                 cy.wait(1000);
+                // Login with registered user
                 authPage.login(user.email, user.password);
 
                 // Verify that correct user full name is displayed
@@ -112,15 +160,39 @@ describe('User registration flow', () => {
             // @ts-ignore
             { tags: ['@e2e', '@smoke', '@positive', '@registration'] },
             () => {
-                cy.section('Fill the Registration form');
-                authPage.registrationForm.fillRegistrationForm(user, {
-                    hasImage: true
-                });
-                cy.step('Submit the Registration form');
-                authPage.registrationForm.registerBtn.click();
+                // Fill and submit the Registration form
+                authPage.registrationForm
+                    .enterFirstName(user.firstName)
+                    .should('have.value', user.firstName);
 
-                cy.section('Login with registered user');
+                authPage.registrationForm
+                    .enterLastName(user.lastName)
+                    .should('have.value', user.lastName);
+
+                authPage.registrationForm
+                    .enterOccupation(user.occupation)
+                    .should('have.value', user.occupation);
+
+                authPage.registrationForm
+                    .enterLocation(user.location)
+                    .should('have.value', user.location);
+
+                authPage.registrationForm
+                    .uploadPhoto()
+                    .should('contain.text', 'profileImage.jpg');
+
+                authPage.registrationForm
+                    .enterEmail(user.email)
+                    .should('have.value', user.email);
+
+                authPage.registrationForm
+                    .enterPassword(user.password)
+                    .should('have.value', user.password);
+                // Submit Registration form
+                authPage.registrationForm.submitForm();
+
                 cy.wait(1000);
+                // Login with registered user
                 authPage.login(user.email, user.password);
 
                 // Verify that correct user full name is displayed
