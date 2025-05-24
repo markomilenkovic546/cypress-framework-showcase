@@ -11,4 +11,8 @@ export default class HomePage extends BasePage {
     readonly feedPostWidget: FeedPostWidget = new FeedPostWidget();
     readonly friendList: FriendList = new FriendList();
     readonly navBar: NavBar = new NavBar();
+
+    open() {
+        super.open('/home');
+    }
 }
