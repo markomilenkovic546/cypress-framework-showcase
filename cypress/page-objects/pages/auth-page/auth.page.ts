@@ -3,14 +3,8 @@ import LoginForm from './login-form';
 import RegistrationForm from './registration-form';
 
 export default class AuthPage extends BasePage {
-    readonly loginForm: LoginForm;
-    readonly registrationForm: RegistrationForm;
-
-    constructor() {
-        super();
-        this.loginForm = new LoginForm();
-        this.registrationForm = new RegistrationForm();
-    }
+    readonly loginForm: LoginForm = new LoginForm();
+    readonly registrationForm: RegistrationForm = new RegistrationForm();
 
     open() {
         super.open('/');
