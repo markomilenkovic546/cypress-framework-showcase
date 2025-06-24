@@ -5,7 +5,7 @@ export type User = {
     occupation: string;
     email: string;
     password: string;
-    pricture: string;
+    picture: string;
   };
 
   export type CreatedUser = {

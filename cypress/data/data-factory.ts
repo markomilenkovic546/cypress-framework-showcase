@@ -9,7 +9,7 @@ export default class DataFactory {
         const occupation = faker.person.jobTitle();
         const email = faker.internet.username() + '@mailsac.com';
         const password = faker.internet.password();
-        const pricture = 'kadu1.jpg';
+        const picture = 'kadu1.jpg';
 
         return {
             firstName,
@@ -18,7 +18,7 @@ export default class DataFactory {
             occupation,
             email,
             password,
-            pricture
+            picture
         };
     }
 

@@ -26,7 +26,7 @@ describe('Registration form validation', () => {
                 // Create random valid user data
                 const user = dataFactory.createValidUserData();
 
-                // Register new user via A
+                // Register new user via API
                 apiHelper.registerUser(user);
 
                 // Fill and submit the Registration form
