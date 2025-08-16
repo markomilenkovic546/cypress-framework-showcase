@@ -24,14 +24,13 @@ describe('Posts List', () => {
                 // Store posts in order to verify client functionalities
                 posts = p;
                 // Login
-                cy.session([user.email, user.password], () => {
-                    authPage.login(user.email, user.password);
-                    cy.url().should('include', '/home');
-                    homePage.profileDetails.fullName.should(
-                        'have.text',
-                        `${user.firstName} ${user.lastName}`
-                    );
-                });
+                authPage.login(user.email, user.password);
+                cy.url().should('include', '/home');
+                homePage.profileDetails.fullName.should(
+                    'have.text',
+                    `${user.firstName} ${user.lastName}`
+                );
+
                 homePage.open();
             });
         });
